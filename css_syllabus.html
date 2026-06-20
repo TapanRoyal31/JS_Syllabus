@@ -1,618 +1,427 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CSS Complete Syllabus</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      :root {
-        --bg: #0d0d14;
-        --surface: #14141f;
-        --card: #1a1a2e;
-        --border: #2a2a45;
-        --accent: #7c6fff;
-        --accent2: #ff6b9d;
-        --accent3: #4dd9ac;
-        --text: #e8e6f0;
-        --muted: #8585a8;
-        --badge-bg: #1e1e38;
-        --font: "Space Grotesk", sans-serif;
-        --mono: "Fira Code", monospace;
-      }
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CSS Complete Syllabus</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #0d0d14;
+    --surface: #14141f;
+    --card: #1a1a2e;
+    --border: #2a2a45;
+    --accent: #7c6fff;
+    --accent2: #ff6b9d;
+    --accent3: #4dd9ac;
+    --text: #e8e6f0;
+    --muted: #8585a8;
+    --badge-bg: #1e1e38;
+    --font: 'Space Grotesk', sans-serif;
+    --mono: 'Fira Code', monospace;
+  }
 
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-      body {
-        background: var(--bg);
-        color: var(--text);
-        font-family: var(--font);
-        line-height: 1.7;
-        min-height: 100vh;
-      }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    line-height: 1.7;
+    min-height: 100vh;
+  }
 
-      /* ── HERO ── */
-      .hero {
-        text-align: center;
-        padding: 80px 24px 60px;
-        background: radial-gradient(
-          ellipse 70% 60% at 50% 0%,
-          #1c1040 0%,
-          transparent 70%
-        );
-        border-bottom: 1px solid var(--border);
-        position: relative;
-        overflow: hidden;
-      }
-      .hero::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background:
-          repeating-linear-gradient(
-            90deg,
-            transparent,
-            transparent 39px,
-            rgba(124, 111, 255, 0.05) 40px
-          ),
-          repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 39px,
-            rgba(124, 111, 255, 0.05) 40px
-          );
-        pointer-events: none;
-      }
-      .hero-tag {
-        display: inline-block;
-        font-family: var(--mono);
-        font-size: 12px;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--accent);
-        border: 1px solid var(--accent);
-        border-radius: 4px;
-        padding: 4px 12px;
-        margin-bottom: 24px;
-      }
-      .hero h1 {
-        font-size: clamp(2.6rem, 6vw, 5rem);
-        font-weight: 700;
-        letter-spacing: -0.02em;
-        line-height: 1.1;
-        background: linear-gradient(135deg, #fff 30%, var(--accent) 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        margin-bottom: 16px;
-      }
-      .hero p {
-        color: var(--muted);
-        font-size: 1.1rem;
-        max-width: 540px;
-        margin: 0 auto 32px;
-      }
-      .stats {
-        display: flex;
-        justify-content: center;
-        gap: 40px;
-        flex-wrap: wrap;
-      }
-      .stat {
-        text-align: center;
-      }
-      .stat-n {
-        font-size: 2rem;
-        font-weight: 700;
-        color: var(--accent);
-        font-variant-numeric: tabular-nums;
-      }
-      .stat-l {
-        font-size: 0.8rem;
-        color: var(--muted);
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-      }
+  /* ── HERO ── */
+  .hero {
+    text-align: center;
+    padding: 80px 24px 60px;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, #1c1040 0%, transparent 70%);
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(124,111,255,.05) 40px),
+      repeating-linear-gradient(0deg,  transparent, transparent 39px, rgba(124,111,255,.05) 40px);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    padding: 4px 12px;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-size: clamp(2.6rem, 6vw, 5rem);
+    font-weight: 700;
+    letter-spacing: -.02em;
+    line-height: 1.1;
+    background: linear-gradient(135deg, #fff 30%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 16px;
+  }
+  .hero p {
+    color: var(--muted);
+    font-size: 1.1rem;
+    max-width: 540px;
+    margin: 0 auto 32px;
+  }
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .stat { text-align: center; }
+  .stat-n {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-l { font-size: .8rem; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
 
-      /* ── LAYOUT ── */
-      .container {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 60px 24px;
-      }
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 24px;
+  }
 
-      /* ── LEVEL SECTIONS ── */
-      .level-header {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        margin-bottom: 28px;
-        padding-bottom: 16px;
-        border-bottom: 1px solid var(--border);
-      }
-      .level-badge {
-        font-family: var(--mono);
-        font-size: 0.72rem;
-        font-weight: 500;
-        padding: 4px 12px;
-        border-radius: 20px;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-      }
-      .badge-basic {
-        background: rgba(77, 217, 172, 0.12);
-        color: var(--accent3);
-        border: 1px solid rgba(77, 217, 172, 0.3);
-      }
-      .badge-mid {
-        background: rgba(124, 111, 255, 0.12);
-        color: var(--accent);
-        border: 1px solid rgba(124, 111, 255, 0.3);
-      }
-      .badge-advanced {
-        background: rgba(255, 107, 157, 0.12);
-        color: var(--accent2);
-        border: 1px solid rgba(255, 107, 157, 0.3);
-      }
+  /* ── LEVEL SECTIONS ── */
+  .level-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .level-badge {
+    font-family: var(--mono);
+    font-size: .72rem;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+  }
+  .badge-basic   { background: rgba(77,217,172,.12); color: var(--accent3); border: 1px solid rgba(77,217,172,.3); }
+  .badge-mid     { background: rgba(124,111,255,.12); color: var(--accent); border: 1px solid rgba(124,111,255,.3); }
+  .badge-advanced{ background: rgba(255,107,157,.12); color: var(--accent2); border: 1px solid rgba(255,107,157,.3); }
 
-      .level-title {
-        font-size: 1.6rem;
-        font-weight: 700;
-        letter-spacing: -0.015em;
-      }
-      .level-num {
-        margin-left: auto;
-        font-family: var(--mono);
-        font-size: 3rem;
-        font-weight: 700;
-        opacity: 0.06;
-        line-height: 1;
-      }
+  .level-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -.015em;
+  }
+  .level-num {
+    margin-left: auto;
+    font-family: var(--mono);
+    font-size: 3rem;
+    font-weight: 700;
+    opacity: .06;
+    line-height: 1;
+  }
 
-      /* ── TOPIC GRID ── */
-      .topic-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 16px;
-        margin-bottom: 60px;
-      }
+  /* ── TOPIC GRID ── */
+  .topic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    margin-bottom: 60px;
+  }
 
-      .topic-card {
-        background: var(--card);
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        padding: 22px 22px 18px;
-        transition:
-          border-color 0.2s,
-          transform 0.2s;
-        cursor: default;
-      }
-      .topic-card:hover {
-        border-color: var(--accent);
-        transform: translateY(-2px);
-      }
-      .topic-card.mid:hover {
-        border-color: var(--accent);
-      }
-      .topic-card.adv:hover {
-        border-color: var(--accent2);
-      }
-      .topic-card.bas:hover {
-        border-color: var(--accent3);
-      }
+  .topic-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 22px 18px;
+    transition: border-color .2s, transform .2s;
+    cursor: default;
+  }
+  .topic-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .topic-card.mid:hover  { border-color: var(--accent); }
+  .topic-card.adv:hover  { border-color: var(--accent2); }
+  .topic-card.bas:hover  { border-color: var(--accent3); }
 
-      .topic-num {
-        font-family: var(--mono);
-        font-size: 0.72rem;
-        color: var(--muted);
-        margin-bottom: 8px;
-        display: block;
-      }
-      .topic-name {
-        font-size: 1rem;
-        font-weight: 600;
-        margin-bottom: 10px;
-        color: var(--text);
-      }
-      .topic-items {
-        list-style: none;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px;
-      }
-      .topic-items li {
-        background: var(--badge-bg);
-        color: var(--muted);
-        font-size: 0.72rem;
-        font-family: var(--mono);
-        padding: 3px 9px;
-        border-radius: 4px;
-        border: 1px solid var(--border);
-      }
+  .topic-num {
+    font-family: var(--mono);
+    font-size: .72rem;
+    color: var(--muted);
+    margin-bottom: 8px;
+    display: block;
+  }
+  .topic-name {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+  .topic-items {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .topic-items li {
+    background: var(--badge-bg);
+    color: var(--muted);
+    font-size: .72rem;
+    font-family: var(--mono);
+    padding: 3px 9px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+  }
 
-      /* ── DIVIDER ── */
-      .divider {
-        height: 1px;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          var(--border),
-          transparent
-        );
-        margin: 0 0 60px;
-      }
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 0 0 60px;
+  }
 
-      /* ── FOOTER ── */
-      footer {
-        text-align: center;
-        padding: 40px 24px;
-        border-top: 1px solid var(--border);
-        color: var(--muted);
-        font-size: 0.85rem;
-      }
-      footer span {
-        color: var(--accent);
-      }
-    </style>
-  </head>
-  <body>
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-tag">Complete Roadmap 2024</div>
-      <h1>CSS Mastery<br />Syllabus</h1>
-      <p>
-        A structured, step-by-step curriculum from absolute zero to
-        production-ready CSS.
-      </p>
-      <div class="stats">
-        <div class="stat">
-          <div class="stat-n">3</div>
-          <div class="stat-l">Levels</div>
-        </div>
-        <div class="stat">
-          <div class="stat-n">28</div>
-          <div class="stat-l">Topics</div>
-        </div>
-        <div class="stat">
-          <div class="stat-n">130+</div>
-          <div class="stat-l">Sub-topics</div>
-        </div>
-      </div>
-    </section>
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 40px 24px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: .85rem;
+  }
+  footer span { color: var(--accent); }
+</style>
+</head>
+<body>
 
-    <div class="container">
-      <!-- ══════════════ LEVEL 1 – BASIC ══════════════ -->
-      <div class="level-header">
-        <span class="level-badge badge-basic">Level 01</span>
-        <span class="level-title">Foundations &amp; Basics</span>
-        <span class="level-num">01</span>
-      </div>
-      <div class="topic-grid">
-        <div class="topic-card bas">
-          <span class="topic-num">01</span>
-          <div class="topic-name">Introduction to CSS</div>
-          <ul class="topic-items">
-            <li>What is CSS?</li>
-            <li>How CSS Works</li>
-            <li>CSS History</li>
-            <li>Browser Rendering</li>
-          </ul>
-        </div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">Complete Roadmap 2024</div>
+  <h1>CSS Mastery<br>Syllabus</h1>
+  <p>A structured, step-by-step curriculum from absolute zero to production-ready CSS.</p>
+  <div class="stats">
+    <div class="stat"><div class="stat-n">3</div><div class="stat-l">Levels</div></div>
+    <div class="stat"><div class="stat-n">20</div><div class="stat-l">Topics</div></div>
+    <div class="stat"><div class="stat-n">90+</div><div class="stat-l">Sub-topics</div></div>
+  </div>
+</section>
 
-        <div class="topic-card bas">
-          <span class="topic-num">02</span>
-          <div class="topic-name">Ways to Apply CSS</div>
-          <ul class="topic-items">
-            <li>Inline CSS</li>
-            <li>Internal &lt;style&gt;</li>
-            <li>External Stylesheet</li>
-            <li>@import</li>
-          </ul>
-        </div>
+<div class="container">
 
-        <div class="topic-card bas">
-          <span class="topic-num">03</span>
-          <div class="topic-name">Selectors</div>
-          <ul class="topic-items">
-            <li>Element</li>
-            <li>Class</li>
-            <li>ID</li>
-            <li>Universal *</li>
-            <li>Grouping</li>
-            <li>Descendant</li>
-          </ul>
-        </div>
+  <!-- ══════════════ LEVEL 1 – BASIC ══════════════ -->
+  <div class="level-header">
+    <span class="level-badge badge-basic">Level 01</span>
+    <span class="level-title">Foundations &amp; Basics</span>
+    <span class="level-num">01</span>
+  </div>
+  <div class="topic-grid">
 
-        <div class="topic-card bas">
-          <span class="topic-num">04</span>
-          <div class="topic-name">Colors &amp; Units</div>
-          <ul class="topic-items">
-            <li>Named Colors</li>
-            <li>HEX</li>
-            <li>RGB / RGBA</li>
-            <li>HSL</li>
-            <li>px / em / rem / %</li>
-            <li>vw / vh</li>
-          </ul>
-        </div>
-
-        <div class="topic-card bas">
-          <span class="topic-num">05</span>
-          <div class="topic-name">Text &amp; Fonts</div>
-          <ul class="topic-items">
-            <li>font-family</li>
-            <li>font-size</li>
-            <li>font-weight</li>
-            <li>line-height</li>
-            <li>text-align</li>
-            <li>Google Fonts</li>
-          </ul>
-        </div>
-
-        <div class="topic-card bas">
-          <span class="topic-num">06</span>
-          <div class="topic-name">Box Model</div>
-          <ul class="topic-items">
-            <li>content</li>
-            <li>padding</li>
-            <li>border</li>
-            <li>margin</li>
-            <li>box-sizing</li>
-            <li>outline</li>
-          </ul>
-        </div>
-
-        <div class="topic-card bas">
-          <span class="topic-num">07</span>
-          <div class="topic-name">Backgrounds</div>
-          <ul class="topic-items">
-            <li>background-color</li>
-            <li>background-image</li>
-            <li>background-size</li>
-            <li>background-position</li>
-            <li>background-repeat</li>
-          </ul>
-        </div>
-
-        <div class="topic-card bas">
-          <span class="topic-num">08</span>
-          <div class="topic-name">Display &amp; Visibility</div>
-          <ul class="topic-items">
-            <li>block / inline / inline-block</li>
-            <li>none</li>
-            <li>visibility</li>
-            <li>opacity</li>
-          </ul>
-        </div>
-
-        <div class="topic-card bas">
-          <span class="topic-num">09</span>
-          <div class="topic-name">Cascade, Specificity &amp; Inheritance</div>
-          <ul class="topic-items">
-            <li>Source Order</li>
-            <li>Specificity Score</li>
-            <li>!important</li>
-            <li>inherit / initial / unset</li>
-          </ul>
-        </div>
-      </div>
-      <!-- /topic-grid -->
-
-      <div class="divider"></div>
-
-      <!-- ══════════════ LEVEL 2 – INTERMEDIATE ══════════════ -->
-      <div class="level-header">
-        <span class="level-badge badge-mid">Level 02</span>
-        <span class="level-title">Intermediate — Layout &amp; Styling</span>
-        <span class="level-num">02</span>
-      </div>
-      <div class="topic-grid">
-        <div class="topic-card mid">
-          <span class="topic-num">10</span>
-          <div class="topic-name">Advanced Selectors</div>
-          <ul class="topic-items">
-            <li>Child &gt;</li>
-            <li>Adjacent +</li>
-            <li>Sibling ~</li>
-            <li>Attribute []</li>
-            <li>:not()</li>
-          </ul>
-        </div>
-
-        <div class="topic-card mid">
-          <span class="topic-num">11</span>
-          <div class="topic-name">Pseudo-classes</div>
-          <ul class="topic-items">
-            <li>:hover :focus :active</li>
-            <li>:nth-child()</li>
-            <li>:first-child :last-child</li>
-            <li>:checked :disabled</li>
-          </ul>
-        </div>
-
-        <div class="topic-card mid">
-          <span class="topic-num">12</span>
-          <div class="topic-name">Pseudo-elements</div>
-          <ul class="topic-items">
-            <li>::before ::after</li>
-            <li>::placeholder</li>
-            <li>::selection</li>
-            <li>::first-line</li>
-          </ul>
-        </div>
-
-        <div class="topic-card mid">
-          <span class="topic-num">13</span>
-          <div class="topic-name">Positioning</div>
-          <ul class="topic-items">
-            <li>static</li>
-            <li>relative</li>
-            <li>absolute</li>
-            <li>fixed</li>
-            <li>sticky</li>
-            <li>z-index</li>
-          </ul>
-        </div>
-
-        <div class="topic-card mid">
-          <span class="topic-num">14</span>
-          <div class="topic-name">Flexbox</div>
-          <ul class="topic-items">
-            <li>display:flex</li>
-            <li>flex-direction</li>
-            <li>justify-content</li>
-            <li>align-items</li>
-            <li>flex-wrap</li>
-            <li>gap</li>
-            <li>flex-grow/shrink/basis</li>
-          </ul>
-        </div>
-
-        <div class="topic-card mid">
-          <span class="topic-num">15</span>
-          <div class="topic-name">CSS Grid</div>
-          <ul class="topic-items">
-            <li>grid-template-columns</li>
-            <li>grid-template-rows</li>
-            <li>gap</li>
-            <li>grid-area</li>
-            <li>auto-fill / auto-fit</li>
-            <li>fr unit</li>
-          </ul>
-        </div>
-
-        <div class="topic-card mid">
-          <span class="topic-num">16</span>
-          <div class="topic-name">Responsive Design</div>
-          <ul class="topic-items">
-            <li>@media queries</li>
-            <li>Mobile First</li>
-            <li>Breakpoints</li>
-            <li>Fluid Typography</li>
-            <li>clamp()</li>
-          </ul>
-        </div>
-
-        <div class="topic-card mid">
-          <span class="topic-num">17</span>
-          <div class="topic-name">Borders &amp; Shadows</div>
-          <ul class="topic-items">
-            <li>border-radius</li>
-            <li>border-image</li>
-            <li>box-shadow</li>
-            <li>text-shadow</li>
-            <li>outline-offset</li>
-          </ul>
-        </div>
-
-        <div class="topic-card mid">
-          <span class="topic-num">18</span>
-          <div class="topic-name">Gradients</div>
-          <ul class="topic-items">
-            <li>linear-gradient</li>
-            <li>radial-gradient</li>
-            <li>conic-gradient</li>
-            <li>repeating-*</li>
-          </ul>
-        </div>
-
-        <div class="topic-card mid">
-          <span class="topic-num">19</span>
-          <div class="topic-name">Transitions</div>
-          <ul class="topic-items">
-            <li>transition-property</li>
-            <li>duration</li>
-            <li>timing-function</li>
-            <li>delay</li>
-            <li>cubic-bezier</li>
-          </ul>
-        </div>
-
-        <div class="topic-card mid">
-          <span class="topic-num">20</span>
-          <div class="topic-name">Transforms</div>
-          <ul class="topic-items">
-            <li>translate()</li>
-            <li>rotate()</li>
-            <li>scale()</li>
-            <li>skew()</li>
-            <li>transform-origin</li>
-            <li>3D transforms</li>
-          </ul>
-        </div>
-      </div>
-      <!-- /topic-grid -->
-
-      <div class="divider"></div>
-
-      <!-- ══════════════ LEVEL 3 – ADVANCED ══════════════ -->
-      <div class="level-header">
-        <span class="level-badge badge-advanced">Level 03</span>
-        <span class="level-title">Advanced — Modern &amp; Expert CSS</span>
-        <span class="level-num">03</span>
-      </div>
-      <div class="topic-grid">
-        <div class="topic-card adv">
-          <span class="topic-num">21</span>
-          <div class="topic-name">CSS Animations</div>
-          <ul class="topic-items">
-            <li>@keyframes</li>
-            <li>animation-name</li>
-            <li>iteration-count</li>
-            <li>direction</li>
-            <li>fill-mode</li>
-            <li>play-state</li>
-          </ul>
-        </div>
-
-        <div class="topic-card adv">
-          <span class="topic-num">22</span>
-          <div class="topic-name">CSS Custom Properties (Variables)</div>
-          <ul class="topic-items">
-            <li>--var-name</li>
-            <li>var()</li>
-            <li>:root scope</li>
-            <li>Theming</li>
-            <li>Fallback Values</li>
-          </ul>
-        </div>
-
-        <div class="topic-card adv">
-          <span class="topic-num">23</span>
-          <div class="topic-name">CSS Functions</div>
-          <ul class="topic-items">
-            <li>calc()</li>
-            <li>min() max()</li>
-            <li>clamp()</li>
-            <li>env()</li>
-            <li>counter()</li>
-          </ul>
-        </div>
-
-        <div class="topic-card adv">
-          <span class="topic-num">24</span>
-          <div class="topic-name">Filters &amp; Blend Modes</div>
-          <ul class="topic-items">
-            <li>filter: blur / brightness / contrast</li>
-            <li>backdrop-filter</li>
-            <li>mix-blend-mode</li>
-            <li>isolation</li>
-          </ul>
-        </div>
-      </div>
-      <!-- /topic-grid -->
+    <div class="topic-card bas">
+      <span class="topic-num">01</span>
+      <div class="topic-name">Introduction to CSS</div>
+      <ul class="topic-items">
+        <li>What is CSS?</li><li>How CSS Works</li><li>Inline / Internal / External</li><li>Browser Rendering</li><li>CSS Syntax</li>
+      </ul>
     </div>
-    <!-- /container -->
 
-    <footer>
-      Built for learners going from <span>zero → hero</span> in CSS
-    </footer>
-  </body>
+    <div class="topic-card bas">
+      <span class="topic-num">02</span>
+      <div class="topic-name">Selectors</div>
+      <ul class="topic-items">
+        <li>Element</li><li>Class</li><li>ID</li><li>Universal *</li><li>Grouping</li><li>Descendant</li><li>Child &gt;</li><li>Attribute []</li>
+      </ul>
+    </div>
+
+    <div class="topic-card bas">
+      <span class="topic-num">03</span>
+      <div class="topic-name">Colors</div>
+      <ul class="topic-items">
+        <li>Named Colors</li><li>HEX</li><li>RGB / RGBA</li><li>HSL / HSLA</li><li>currentColor</li><li>opacity</li>
+      </ul>
+    </div>
+
+    <div class="topic-card bas">
+      <span class="topic-num">04</span>
+      <div class="topic-name">Units</div>
+      <ul class="topic-items">
+        <li>px</li><li>em</li><li>rem</li><li>%</li><li>vw / vh</li><li>vmin / vmax</li><li>ch / ex</li>
+      </ul>
+    </div>
+
+    <div class="topic-card bas">
+      <span class="topic-num">05</span>
+      <div class="topic-name">Box Model</div>
+      <ul class="topic-items">
+        <li>content</li><li>padding</li><li>border</li><li>margin</li><li>box-sizing</li><li>width / height</li><li>overflow</li>
+      </ul>
+    </div>
+
+    <div class="topic-card bas">
+      <span class="topic-num">06</span>
+      <div class="topic-name">Outline vs Border</div>
+      <ul class="topic-items">
+        <li>border vs outline</li><li>outline-width</li><li>outline-style</li><li>outline-color</li><li>outline-offset</li><li>Accessibility use</li>
+      </ul>
+    </div>
+
+    <div class="topic-card bas">
+      <span class="topic-num">07</span>
+      <div class="topic-name">Outline</div>
+      <ul class="topic-items">
+        <li>outline shorthand</li><li>outline-offset</li><li>:focus outline</li><li>Removing outline safely</li>
+      </ul>
+    </div>
+
+    <div class="topic-card bas">
+      <span class="topic-num">08</span>
+      <div class="topic-name">Box Shadow</div>
+      <ul class="topic-items">
+        <li>h-offset v-offset</li><li>blur-radius</li><li>spread-radius</li><li>color</li><li>inset</li><li>multiple shadows</li>
+      </ul>
+    </div>
+
+    <div class="topic-card bas">
+      <span class="topic-num">09</span>
+      <div class="topic-name">Typography</div>
+      <ul class="topic-items">
+        <li>font-family</li><li>font-size</li><li>font-weight</li><li>font-style</li><li>line-height</li><li>letter-spacing</li><li>text-align</li><li>Google Fonts</li>
+      </ul>
+    </div>
+
+  </div><!-- /topic-grid -->
+
+  <div class="divider"></div>
+
+  <!-- ══════════════ LEVEL 2 – INTERMEDIATE ══════════════ -->
+  <div class="level-header">
+    <span class="level-badge badge-mid">Level 02</span>
+    <span class="level-title">Intermediate — Layout &amp; Styling</span>
+    <span class="level-num">02</span>
+  </div>
+  <div class="topic-grid">
+
+    <div class="topic-card mid">
+      <span class="topic-num">10</span>
+      <div class="topic-name">Display</div>
+      <ul class="topic-items">
+        <li>block</li><li>inline</li><li>inline-block</li><li>none</li><li>visibility</li><li>opacity</li><li>contents</li>
+      </ul>
+    </div>
+
+    <div class="topic-card mid">
+      <span class="topic-num">11</span>
+      <div class="topic-name">Flexbox</div>
+      <ul class="topic-items">
+        <li>display:flex</li><li>flex-direction</li><li>justify-content</li><li>align-items</li><li>align-self</li><li>flex-wrap</li><li>gap</li><li>flex-grow/shrink/basis</li>
+      </ul>
+    </div>
+
+    <div class="topic-card mid">
+      <span class="topic-num">12</span>
+      <div class="topic-name">Position</div>
+      <ul class="topic-items">
+        <li>static</li><li>relative</li><li>absolute</li><li>fixed</li><li>sticky</li><li>z-index</li><li>top/right/bottom/left</li>
+      </ul>
+    </div>
+
+    <div class="topic-card mid">
+      <span class="topic-num">13</span>
+      <div class="topic-name">Transform</div>
+      <ul class="topic-items">
+        <li>translate()</li><li>rotate()</li><li>scale()</li><li>skew()</li><li>transform-origin</li><li>matrix()</li><li>3D transforms</li>
+      </ul>
+    </div>
+
+    <div class="topic-card mid">
+      <span class="topic-num">14</span>
+      <div class="topic-name">Grid</div>
+      <ul class="topic-items">
+        <li>grid-template-columns</li><li>grid-template-rows</li><li>gap</li><li>grid-area</li><li>auto-fill / auto-fit</li><li>fr unit</li><li>grid-column/row span</li>
+      </ul>
+    </div>
+
+    <div class="topic-card mid">
+      <span class="topic-num">15</span>
+      <div class="topic-name">Transition</div>
+      <ul class="topic-items">
+        <li>transition-property</li><li>transition-duration</li><li>timing-function</li><li>transition-delay</li><li>cubic-bezier</li><li>shorthand</li>
+      </ul>
+    </div>
+
+    <div class="topic-card mid">
+      <span class="topic-num">16</span>
+      <div class="topic-name">Animation</div>
+      <ul class="topic-items">
+        <li>@keyframes</li><li>animation-name</li><li>animation-duration</li><li>iteration-count</li><li>direction</li><li>fill-mode</li><li>play-state</li>
+      </ul>
+    </div>
+
+    <div class="topic-card mid">
+      <span class="topic-num">17</span>
+      <div class="topic-name">Media Query</div>
+      <ul class="topic-items">
+        <li>@media syntax</li><li>min-width / max-width</li><li>Mobile First</li><li>Breakpoints</li><li>orientation</li><li>prefers-color-scheme</li>
+      </ul>
+    </div>
+
+  </div><!-- /topic-grid -->
+
+  <div class="divider"></div>
+
+  <!-- ══════════════ LEVEL 3 – ADVANCED ══════════════ -->
+  <div class="level-header">
+    <span class="level-badge badge-advanced">Level 03</span>
+    <span class="level-title">Advanced — Modern &amp; Expert CSS</span>
+    <span class="level-num">03</span>
+  </div>
+  <div class="topic-grid">
+
+    <div class="topic-card adv">
+      <span class="topic-num">18</span>
+      <div class="topic-name">Gradients</div>
+      <ul class="topic-items">
+        <li>linear-gradient</li><li>radial-gradient</li><li>conic-gradient</li><li>repeating-linear-gradient</li><li>repeating-radial-gradient</li><li>multiple backgrounds</li>
+      </ul>
+    </div>
+
+    <div class="topic-card adv">
+      <span class="topic-num">19</span>
+      <div class="topic-name">CSS Functions</div>
+      <ul class="topic-items">
+        <li>calc()</li><li>min()</li><li>max()</li><li>clamp()</li><li>env()</li><li>counter()</li><li>attr()</li>
+      </ul>
+    </div>
+
+    <div class="topic-card adv">
+      <span class="topic-num">20</span>
+      <div class="topic-name">Variables (Custom Properties)</div>
+      <ul class="topic-items">
+        <li>--var-name declaration</li><li>var()</li><li>:root scope</li><li>Fallback values</li><li>Theming</li><li>JS &amp; CSS variable interop</li>
+      </ul>
+    </div>
+
+  </div><!-- /topic-grid -->
+
+</div><!-- /container -->
+
+<footer>
+  Built for learners going from <span>zero → hero</span> in CSS · 2024
+</footer>
+
+</body>
 </html>
