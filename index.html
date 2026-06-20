@@ -3,296 +3,247 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>JavaScript Beginner Syllabus</title>
+  <title>Web Dev Syllabus — Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --color-background-primary: #ffffff;
-      --color-background-secondary: #f5f4ef;
-      --color-background-info: #e6f1fb;
-      --color-background-success: #eaf3de;
-      --color-background-warning: #faeeda;
-      --color-text-primary: #1a1a18;
-      --color-text-secondary: #5f5e5a;
-      --color-text-tertiary: #888780;
-      --color-text-info: #185fa5;
-      --color-text-success: #3b6d11;
-      --color-text-warning: #854f0b;
-      --color-border-tertiary: rgba(0,0,0,0.12);
-      --color-border-secondary: rgba(0,0,0,0.22);
-      --border-radius-md: 8px;
-      --border-radius-lg: 12px;
-      --font-sans: system-ui, -apple-system, sans-serif;
+      --bg:      #0d0d14;
+      --card:    #1a1a2e;
+      --border:  #2a2a45;
+      --text:    #e8e6f0;
+      --muted:   #8585a8;
+      --accent:  #7c6fff;
+      --accent2: #ff6b9d;
+      --accent3: #4dd9ac;
+      --yellow:  #f5c542;
+      --font:    'Space Grotesk', sans-serif;
+      --mono:    'Fira Code', monospace;
     }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --color-background-primary: #1e1e1c;
-        --color-background-secondary: #2a2a27;
-        --color-background-info: #042c53;
-        --color-background-success: #173404;
-        --color-background-warning: #412402;
-        --color-text-primary: #e8e6dc;
-        --color-text-secondary: #9c9a92;
-        --color-text-tertiary: #6b6a63;
-        --color-text-info: #85b7eb;
-        --color-text-success: #97c459;
-        --color-text-warning: #ef9f27;
-        --color-border-tertiary: rgba(255,255,255,0.1);
-        --color-border-secondary: rgba(255,255,255,0.18);
-      }
-    }
+
     body {
-      font-family: var(--font-sans);
-      background: var(--color-background-secondary);
-      color: var(--color-text-primary);
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
       min-height: 100vh;
-      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
     }
-    .container { max-width: 760px; margin: 0 auto; }
-    .header { margin-bottom: 1.5rem; }
-    .header h1 { font-size: 22px; font-weight: 500; color: var(--color-text-primary); }
-    .header p { font-size: 14px; color: var(--color-text-secondary); margin-top: 4px; }
-    .progress-bar { background: var(--color-border-tertiary); border-radius: 6px; height: 6px; margin-top: 10px; }
-    .progress-fill { height: 6px; border-radius: 6px; background: #185FA5; transition: width 0.4s; }
-    .progress-label { font-size: 12px; color: var(--color-text-secondary); margin-top: 4px; }
-    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 1.5rem; }
-    .stat { background: var(--color-background-primary); border-radius: var(--border-radius-md); padding: 12px; text-align: center; border: 0.5px solid var(--color-border-tertiary); }
-    .stat-num { font-size: 22px; font-weight: 500; color: var(--color-text-primary); }
-    .stat-lbl { font-size: 12px; color: var(--color-text-secondary); margin-top: 2px; }
-    .phase { border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); margin-bottom: 1rem; overflow: hidden; background: var(--color-background-primary); }
-    .phase-header { display: flex; align-items: center; gap: 12px; padding: 14px 16px; cursor: pointer; user-select: none; background: var(--color-background-primary); transition: background 0.15s; }
-    .phase-header:hover { background: var(--color-background-secondary); }
-    .phase-badge { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 500; flex-shrink: 0; }
-    .phase-info { flex: 1; }
-    .phase-title { font-size: 15px; font-weight: 500; color: var(--color-text-primary); }
-    .phase-meta { font-size: 12px; color: var(--color-text-secondary); margin-top: 2px; }
-    .phase-chevron { font-size: 12px; color: var(--color-text-tertiary); transition: transform 0.2s; }
-    .phase-chevron.open { transform: rotate(90deg); }
-    .phase-body { display: none; border-top: 0.5px solid var(--color-border-tertiary); }
-    .phase-body.open { display: block; }
-    .topic { padding: 12px 16px; border-bottom: 0.5px solid var(--color-border-tertiary); display: flex; align-items: flex-start; gap: 10px; cursor: pointer; transition: background 0.15s; }
-    .topic:last-child { border-bottom: none; }
-    .topic:hover { background: var(--color-background-secondary); }
-    .topic-check { width: 18px; height: 18px; border: 0.5px solid var(--color-border-secondary); border-radius: 4px; flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; font-size: 11px; transition: all 0.15s; }
-    .topic-check.done { background: #185FA5; border-color: #185FA5; color: #fff; }
-    .topic-content { flex: 1; }
-    .topic-name { font-size: 14px; font-weight: 500; color: var(--color-text-primary); }
-    .topic-points { margin-top: 6px; display: none; }
-    .topic-points.open { display: block; }
-    .point { font-size: 12px; color: var(--color-text-secondary); padding: 2px 0 2px 12px; border-left: 2px solid var(--color-border-tertiary); margin-bottom: 3px; line-height: 1.5; }
-    .expand-btn { font-size: 11px; color: var(--color-text-tertiary); margin-top: 4px; }
-    .tag { font-size: 11px; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-left: 8px; }
-    .tag-core { background: var(--color-background-info); color: var(--color-text-info); }
-    .tag-new { background: var(--color-background-success); color: var(--color-text-success); }
-    .tag-adv { background: var(--color-background-warning); color: var(--color-text-warning); }
-    .reset-btn { font-size: 12px; color: var(--color-text-secondary); cursor: pointer; border: none; background: none; padding: 0; }
+
+    /* ── GRID BG ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(124,111,255,.04) 40px),
+        repeating-linear-gradient(0deg,  transparent, transparent 39px, rgba(124,111,255,.04) 40px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 680px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid rgba(124,111,255,.4);
+      border-radius: 4px;
+      padding: 4px 14px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 6vw, 3.4rem);
+      font-weight: 700;
+      letter-spacing: -.025em;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #fff 30%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 14px;
+    }
+    .hero p {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 420px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ── CARDS ── */
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 520px) {
+      .cards { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 30px 26px 26px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: border-color .2s, transform .2s, box-shadow .2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity .2s;
+      border-radius: 16px;
+    }
+    .card.css::before  { background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(124,111,255,.08) 0%, transparent 70%); }
+    .card.js::before   { background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(245,197,66,.07) 0%, transparent 70%); }
+    .card:hover { transform: translateY(-4px); }
+    .card.css:hover { border-color: var(--accent);  box-shadow: 0 8px 32px rgba(124,111,255,.18); }
+    .card.js:hover  { border-color: var(--yellow);  box-shadow: 0 8px 32px rgba(245,197,66,.14); }
+    .card:hover::before { opacity: 1; }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 700;
+      font-family: var(--mono);
+      flex-shrink: 0;
+    }
+    .card.css .card-icon { background: rgba(124,111,255,.15); color: var(--accent); }
+    .card.js  .card-icon { background: rgba(245,197,66,.13);  color: var(--yellow); }
+
+    .card-body { flex: 1; }
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      letter-spacing: -.01em;
+    }
+    .card-desc {
+      font-size: .82rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .pill {
+      font-family: var(--mono);
+      font-size: .68rem;
+      padding: 3px 9px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      background: rgba(255,255,255,.03);
+    }
+    .card.css .pill { border-color: rgba(124,111,255,.3); color: rgba(124,111,255,.8); }
+    .card.js  .pill { border-color: rgba(245,197,66,.3);  color: rgba(245,197,66,.8); }
+
+    .card-arrow {
+      position: absolute;
+      bottom: 26px;
+      right: 26px;
+      font-size: 18px;
+      color: var(--border);
+      transition: color .2s, transform .2s;
+    }
+    .card:hover .card-arrow { transform: translate(3px, -3px); }
+    .card.css:hover .card-arrow { color: var(--accent); }
+    .card.js:hover  .card-arrow { color: var(--yellow); }
+
+    /* ── FOOTER ── */
+    .footer {
+      text-align: center;
+      margin-top: 44px;
+      font-size: .78rem;
+      color: var(--muted);
+      font-family: var(--mono);
+      letter-spacing: .04em;
+    }
+    .footer span { color: var(--accent3); }
   </style>
 </head>
 <body>
-<div class="container">
-  <div class="header">
-    <div style="display:flex;align-items:flex-start;justify-content:space-between">
-      <div>
-        <h1>JavaScript — Complete Beginner Syllabus</h1>
-        <p>7 phases · click topics to expand · check off as you learn</p>
+<div class="wrapper">
+
+  <div class="hero">
+    <div class="hero-eyebrow">Web Development · 2024</div>
+    <h1>Learn to Code<br/>Step by Step</h1>
+    <p>Pick a syllabus below. Each one takes you from zero to production-ready, topic by topic.</p>
+  </div>
+
+  <div class="cards">
+
+    <!-- CSS Card -->
+    <a class="card css" href="css_syllabus.html">
+      <div class="card-icon">CSS</div>
+      <div class="card-body">
+        <div class="card-title">CSS Mastery</div>
+        <div class="card-desc">3 levels · 28 topics · 130+ sub-topics. From selectors to container queries.</div>
       </div>
-      <button class="reset-btn" onclick="resetAll()">Reset</button>
-    </div>
-    <div class="progress-bar" style="margin-top:12px"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
-    <div class="progress-label" id="prog-label">0 of 0 topics completed</div>
+      <div class="card-meta">
+        <span class="pill">Basic</span>
+        <span class="pill">Intermediate</span>
+        <span class="pill">Advanced</span>
+      </div>
+      <div class="card-arrow">↗</div>
+    </a>
+
+    <!-- JS Card -->
+    <a class="card js" href="js_syllabus.html">
+      <div class="card-icon">JS</div>
+      <div class="card-body">
+        <div class="card-title">JavaScript</div>
+        <div class="card-desc">7 phases · 38 topics · interactive progress tracker with checkboxes.</div>
+      </div>
+      <div class="card-meta">
+        <span class="pill">Beginner</span>
+        <span class="pill">Core</span>
+        <span class="pill">Modern ES6+</span>
+      </div>
+      <div class="card-arrow">↗</div>
+    </a>
+
   </div>
 
-  <div class="stats">
-    <div class="stat"><div class="stat-num">7</div><div class="stat-lbl">Phases</div></div>
-    <div class="stat"><div class="stat-num" id="stat-topics">0</div><div class="stat-lbl">Topics</div></div>
-    <div class="stat"><div class="stat-num" id="stat-done">0</div><div class="stat-lbl">Completed</div></div>
+  <div class="footer">
+    Open any syllabus · learn at your own pace · <span>track your progress</span>
   </div>
 
-  <div id="phases"></div>
 </div>
-
-<script>
-const curriculum = [
-  {
-    id: 1, title: "Getting Started", duration: "1 week",
-    color: "#E6F1FB", textColor: "#0C447C",
-    topics: [
-      { name: "What is JavaScript?", tag: "core", points: ["History of JS — from browser scripting to full-stack", "How JS runs in the browser (V8, SpiderMonkey)", "JS vs Java — common misconception", "Client-side vs server-side JS (Node.js)", "JS engines and the runtime environment"] },
-      { name: "Setting Up Your Environment", tag: "core", points: ["Installing VS Code + extensions (Prettier, ESLint)", "Browser DevTools — Console, Sources, Network tabs", "Node.js & npm installation", "Running JS in browser console", "Running JS files with Node.js", "Using CodePen / JSFiddle for quick experiments"] },
-      { name: "Your First JavaScript Program", tag: "core", points: ["console.log() — printing output", "Adding JS to HTML: <script> tag placement", "External .js file linking", "alert(), prompt(), confirm() — browser dialogs", "Comments: // single-line and /* multi-line */"] }
-    ]
-  },
-  {
-    id: 2, title: "Core Language Basics", duration: "2–3 weeks",
-    color: "#EAF3DE", textColor: "#27500A",
-    topics: [
-      { name: "Variables & Data Types", tag: "core", points: ["var, let, const — differences and when to use", "Primitive types: string, number, boolean, null, undefined, symbol, BigInt", "typeof operator", "Dynamic typing — variables can change type", "Truthy and falsy values", "null vs undefined — when each appears"] },
-      { name: "Operators", tag: "core", points: ["Arithmetic: +, -, *, /, %, ** (exponent)", "Assignment: =, +=, -=, *=, /=", "Comparison: ==, ===, !=, !==, >, <, >=, <=", "Strict equality (===) vs loose equality (==)", "Logical: && (AND), || (OR), ! (NOT)", "Nullish coalescing: ?? operator", "Optional chaining: ?. operator", "Ternary operator: condition ? a : b"] },
-      { name: "Strings", tag: "core", points: ["String creation: single, double, backtick quotes", "Template literals: `Hello ${name}`", "String methods: length, toUpperCase, toLowerCase, trim", "indexOf, includes, startsWith, endsWith", "slice, substring, replace, replaceAll", "split and join", "String concatenation vs template literals", "Escape characters: \\n, \\t, \\'"] },
-      { name: "Numbers & Math", tag: "core", points: ["Integer vs floating point (0.1 + 0.2 problem)", "NaN — Not a Number, isNaN() check", "parseInt() and parseFloat()", "Number.isInteger(), Number.isFinite()", "Math object: Math.round, floor, ceil, abs, max, min, pow, sqrt", "Math.random() for random numbers", "toFixed() for decimal formatting"] },
-      { name: "Booleans & Conditionals", tag: "core", points: ["if, else if, else blocks", "Nested if statements", "switch / case / default / break", "Logical operators in conditions", "Short-circuit evaluation", "Combining multiple conditions"] },
-      { name: "Loops", tag: "core", points: ["for loop — classic index loop", "while loop", "do...while loop", "break — exit loop early", "continue — skip current iteration", "for...of — iterate over arrays/strings", "for...in — iterate over object keys", "Nested loops and performance"] }
-    ]
-  },
-  {
-    id: 3, title: "Functions", duration: "1–2 weeks",
-    color: "#FAEEDA", textColor: "#633806",
-    topics: [
-      { name: "Function Basics", tag: "core", points: ["Function declaration vs function expression", "Parameters and arguments", "Return statement — returning values", "Default parameters: function greet(name = 'World')", "Functions as first-class citizens", "Calling functions, invoking functions"] },
-      { name: "Arrow Functions", tag: "core", points: ["Syntax: const fn = (params) => expression", "Single param: no parens needed", "Implicit return for single expressions", "Arrow functions and 'this' binding difference", "When to use arrow vs regular functions"] },
-      { name: "Scope & Closures", tag: "core", points: ["Global scope vs local/function scope", "Block scope with let and const", "Hoisting — var is hoisted, let/const are not", "Closure definition: function remembering its outer scope", "Practical closure examples: counters, private variables", "IIFE — Immediately Invoked Function Expression"] },
-      { name: "Higher-Order Functions", tag: "core", points: ["Functions that take functions as arguments", "Functions that return functions", "Callbacks — passing a function to be called later", "map(), filter(), reduce() as higher-order functions", "forEach vs map — key differences", "Chaining array methods"] },
-      { name: "Rest & Spread", tag: "core", points: ["Rest params: function sum(...nums) — collect args into array", "Spread in function calls: Math.max(...arr)", "Spread to copy arrays: [...arr]", "Spread to merge objects: {...obj1, ...obj2}", "Difference between rest and spread"] }
-    ]
-  },
-  {
-    id: 4, title: "Arrays & Objects", duration: "2 weeks",
-    color: "#FBEAF0", textColor: "#72243E",
-    topics: [
-      { name: "Arrays", tag: "core", points: ["Creating arrays: literal [], Array constructor", "Accessing elements by index", "Modifying elements", "Array length property", "push, pop, shift, unshift — add/remove", "splice — insert/remove at position", "slice — copy a portion", "indexOf, includes, find, findIndex", "sort and reverse (and sort gotchas)", "flat and flatMap", "Array.from() and Array.isArray()"] },
-      { name: "Array Iteration Methods", tag: "core", points: ["forEach — iterate without returning", "map — transform and return new array", "filter — return matching elements", "reduce — accumulate to single value", "some — returns true if any match", "every — returns true if all match", "find — first matching element", "Chaining: arr.filter(...).map(...).reduce(...)"] },
-      { name: "Objects", tag: "core", points: ["Object literal syntax: { key: value }", "Accessing properties: dot notation vs bracket notation", "Adding, updating, deleting properties", "Checking if property exists: 'key' in obj, hasOwnProperty", "Object.keys(), Object.values(), Object.entries()", "Object.assign() — shallow copy / merge", "Spread to copy objects: {...obj}", "Computed property names: { [variable]: value }"] },
-      { name: "Destructuring", tag: "core", points: ["Array destructuring: const [a, b] = arr", "Object destructuring: const { name, age } = person", "Default values in destructuring", "Renaming: const { name: firstName } = person", "Nested destructuring", "Destructuring in function parameters", "Swapping variables with destructuring"] },
-      { name: "JSON", tag: "core", points: ["What JSON is and why it's used", "JSON.stringify() — JS object to JSON string", "JSON.parse() — JSON string to JS object", "Valid JSON rules (double quotes, no functions)", "Pretty printing JSON: JSON.stringify(obj, null, 2)", "Working with JSON APIs"] }
-    ]
-  },
-  {
-    id: 5, title: "DOM & Browser APIs", duration: "2 weeks",
-    color: "#EEEDFE", textColor: "#3C3489",
-    topics: [
-      { name: "The DOM", tag: "core", points: ["What is the DOM (Document Object Model)", "DOM tree — nodes, elements, text nodes", "document object — entry point to the DOM", "Selecting elements: getElementById, querySelector, querySelectorAll", "getElementsByClassName, getElementsByTagName", "HTMLCollection vs NodeList — differences"] },
-      { name: "Manipulating the DOM", tag: "core", points: ["Reading and setting textContent and innerHTML", "innerText vs textContent — differences", "Getting/setting attributes: getAttribute, setAttribute", "classList: add, remove, toggle, contains", "Changing inline styles: element.style.property", "Creating elements: document.createElement()", "Appending: appendChild, append, prepend, insertBefore", "Removing elements: remove(), removeChild()"] },
-      { name: "Events", tag: "core", points: ["addEventListener(event, handler)", "Common events: click, input, change, submit, keydown, keyup, mouseover", "Event object — properties: target, type, preventDefault", "Event bubbling and capturing", "stopPropagation — stopping event travel", "Event delegation — listening on parent for child events", "removeEventListener — cleanup", "once option — fire event only once"] },
-      { name: "Forms & User Input", tag: "core", points: ["Accessing form elements and values", "input event vs change event", "Preventing form submission default: e.preventDefault()", "Reading checkbox, radio, select values", "Form validation basics", "Focus and blur events"] },
-      { name: "Browser Storage", tag: "core", points: ["localStorage — persists after tab close", "sessionStorage — cleared on tab close", "setItem, getItem, removeItem, clear", "Storing objects: JSON.stringify / JSON.parse pattern", "Cookies — basics and when to use", "IndexedDB — for large structured data (intro)"] },
-      { name: "Timers & Scheduling", tag: "core", points: ["setTimeout(fn, ms) — run once after delay", "setInterval(fn, ms) — run repeatedly", "clearTimeout and clearInterval — cancel timers", "requestAnimationFrame — for smooth animations", "The event loop — call stack, task queue, microtask queue"] }
-    ]
-  },
-  {
-    id: 6, title: "Asynchronous JavaScript", duration: "2 weeks",
-    color: "#E1F5EE", textColor: "#085041",
-    topics: [
-      { name: "Callbacks", tag: "core", points: ["What is asynchronous code?", "Callback functions — run after task completes", "Callback hell — nested callbacks problem", "Error-first callback pattern: (err, data) => {}", "setTimeout as a simple async example"] },
-      { name: "Promises", tag: "core", points: ["What is a Promise — pending, fulfilled, rejected", "Creating: new Promise((resolve, reject) => {})", ".then() for success, .catch() for errors, .finally() always runs", "Chaining promises with .then().then()", "Promise.all() — wait for multiple promises", "Promise.allSettled() — all results regardless of failure", "Promise.race() — first to resolve/reject wins", "Promise.any() — first success wins"] },
-      { name: "Async / Await", tag: "core", points: ["async function — always returns a Promise", "await — pause until promise resolves", "try / catch / finally with async/await", "Parallel execution: await Promise.all([...])", "Sequential vs parallel async operations", "Top-level await (ES2022)"] },
-      { name: "Fetch API", tag: "core", points: ["fetch(url) — makes HTTP requests", "Response object: .json(), .text(), .blob()", "Handling HTTP errors (fetch doesn't throw on 4xx/5xx)", "GET, POST, PUT, DELETE requests", "Setting headers and request body", "Working with REST APIs", "Async/await with fetch — clean pattern"] },
-      { name: "Error Handling", tag: "core", points: ["try / catch / finally blocks", "The Error object: message, name, stack", "Throwing custom errors: throw new Error('message')", "Custom error classes extending Error", "Handling errors in promises vs async/await", "Global error handlers: window.onerror, unhandledRejection"] }
-    ]
-  },
-  {
-    id: 7, title: "Modern JS & Advanced Concepts", duration: "2–3 weeks",
-    color: "#FAECE7", textColor: "#712B13",
-    topics: [
-      { name: "ES6+ Features", tag: "new", points: ["let and const (ES6)", "Arrow functions (ES6)", "Classes and inheritance (ES6)", "Modules: import / export (ES6)", "Symbol type (ES6)", "Iterators and generators (ES6)", "Optional chaining ?. (ES2020)", "Nullish coalescing ?? (ES2020)", "Logical assignment: &&=, ||=, ??= (ES2021)", "Array at(), Object.hasOwn() (ES2022)", "Array groupBy, findLast (ES2023+)"] },
-      { name: "Classes & OOP", tag: "core", points: ["class syntax and constructor()", "Instance methods and properties", "Static methods and properties", "Inheritance with extends and super()", "Private fields with # prefix", "Getters and setters", "Class vs prototype-based inheritance", "Composition over inheritance — modern preference"] },
-      { name: "Prototypes & the Prototype Chain", tag: "adv", points: ["What is a prototype?", "Object.getPrototypeOf()", "__proto__ vs prototype property", "How property lookup walks the chain", "Constructor functions (pre-class pattern)", "Object.create() for prototypal inheritance", "Why understanding prototypes matters even with classes"] },
-      { name: "Modules", tag: "core", points: ["Named exports: export const / export function", "Default export: export default", "Importing: import { a, b } from './file'", "Import default: import MyThing from './file'", "Import all: import * as utils from './file'", "Dynamic imports: import('./module').then()", "CommonJS (require/module.exports) vs ES Modules", "Module bundlers: Vite, Webpack, Rollup (overview)"] },
-      { name: "Functional Programming Concepts", tag: "adv", points: ["Pure functions — no side effects", "Immutability — don't mutate data", "Function composition", "Currying — functions returning functions", "Partial application", "Avoiding shared mutable state", "Point-free style", "Libraries: Ramda, lodash/fp (overview)"] },
-      { name: "Regular Expressions", tag: "adv", points: ["Creating regex: /pattern/ and new RegExp()", "Test: regex.test(str)", "Match: str.match(regex), str.matchAll()", "Replace: str.replace(regex, replacement)", "Common patterns: email, URL, phone number", "Character classes: \\d, \\w, \\s, .", "Quantifiers: *, +, ?, {n,m}", "Anchors: ^ start, $ end", "Groups: () and named groups (?<n>)"] },
-      { name: "Tooling & Best Practices", tag: "adv", points: ["ESLint — catching errors and enforcing style", "Prettier — auto-formatting code", "npm scripts — automating tasks", "Debugging: breakpoints, DevTools Sources tab, debugger statement", "Writing clean code: naming, small functions, single responsibility", "Code comments — when to write them", "Git workflow for JS projects", "Introduction to TypeScript"] }
-    ]
-  }
-];
-
-let completed = new Set(JSON.parse(localStorage.getItem('js-syllabus') || '[]'));
-
-function save() {
-  try { localStorage.setItem('js-syllabus', JSON.stringify([...completed])); } catch(e) {}
-}
-
-function getTotal() {
-  return curriculum.reduce((a, p) => a + p.topics.length, 0);
-}
-
-function updateStats() {
-  const total = getTotal();
-  const done = completed.size;
-  document.getElementById('stat-topics').textContent = total;
-  document.getElementById('stat-done').textContent = done;
-  document.getElementById('prog-fill').style.width = total ? (done/total*100)+'%' : '0%';
-  document.getElementById('prog-label').textContent = done + ' of ' + total + ' topics completed';
-}
-
-function toggleTopic(id, el) {
-  if (completed.has(id)) completed.delete(id);
-  else completed.add(id);
-  save();
-  const check = el.querySelector('.topic-check');
-  check.classList.toggle('done', completed.has(id));
-  check.textContent = completed.has(id) ? '✓' : '';
-  updateStats();
-}
-
-function togglePoints(id, el) {
-  const pts = el.querySelector('.topic-points');
-  const btn = el.querySelector('.expand-btn');
-  if (!pts) return;
-  const isOpen = pts.classList.contains('open');
-  pts.classList.toggle('open', !isOpen);
-  if (btn) btn.textContent = isOpen ? '▸ show points' : '▾ hide points';
-}
-
-function togglePhase(id) {
-  const body = document.getElementById('phase-body-'+id);
-  const chev = document.getElementById('phase-chev-'+id);
-  body.classList.toggle('open');
-  chev.classList.toggle('open');
-}
-
-function resetAll() {
-  completed.clear();
-  save();
-  document.querySelectorAll('.topic-check').forEach(c => { c.classList.remove('done'); c.textContent = ''; });
-  document.querySelectorAll('.topic-points').forEach(p => p.classList.remove('open'));
-  document.querySelectorAll('.expand-btn').forEach(b => b.textContent = '▸ show points');
-  updateStats();
-}
-
-function render() {
-  const container = document.getElementById('phases');
-  curriculum.forEach((phase, pi) => {
-    const div = document.createElement('div');
-    div.className = 'phase';
-    const topicHTML = phase.topics.map((t, ti) => {
-      const id = `p${pi}-t${ti}`;
-      const isDone = completed.has(id);
-      const tagClass = t.tag === 'core' ? 'tag-core' : t.tag === 'new' ? 'tag-new' : 'tag-adv';
-      const tagLabel = t.tag === 'core' ? 'core' : t.tag === 'new' ? 'modern' : 'advanced';
-      return `
-        <div class="topic" onclick="toggleTopic('${id}', this)" id="topic-${id}">
-          <div class="topic-check ${isDone ? 'done' : ''}">${isDone ? '✓' : ''}</div>
-          <div class="topic-content">
-            <div style="display:flex;align-items:center;flex-wrap:wrap;gap:4px">
-              <span class="topic-name">${t.name}</span>
-              <span class="tag ${tagClass}">${tagLabel}</span>
-            </div>
-            <div class="topic-points" id="pts-${id}">
-              ${t.points.map(p => `<div class="point">${p}</div>`).join('')}
-            </div>
-            <div class="expand-btn" onclick="event.stopPropagation();togglePoints('${id}', document.getElementById('topic-${id}'))">▸ show points</div>
-          </div>
-        </div>`;
-    }).join('');
-
-    div.innerHTML = `
-      <div class="phase-header" onclick="togglePhase(${phase.id})">
-        <div class="phase-badge" style="background:${phase.color};color:${phase.textColor}">${phase.id}</div>
-        <div class="phase-info">
-          <div class="phase-title">${phase.title}</div>
-          <div class="phase-meta">${phase.topics.length} topics · ~${phase.duration}</div>
-        </div>
-        <div class="phase-chevron" id="phase-chev-${phase.id}">▶</div>
-      </div>
-      <div class="phase-body ${phase.id <= 2 ? 'open' : ''}" id="phase-body-${phase.id}">
-        ${topicHTML}
-      </div>`;
-    container.appendChild(div);
-    if (phase.id <= 2) document.getElementById('phase-chev-'+phase.id).classList.add('open');
-  });
-  updateStats();
-}
-
-render();
-</script>
 </body>
 </html>
